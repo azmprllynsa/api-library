@@ -1,13 +1,15 @@
+/* eslint-disable linebreak-style */
 const express = require('express');
+
 const router = express.Router();
 const userController = require('../controllers/user');
 
 router
-	.get('/admin', userController.getUser)
+  .get('/admin', userController.getUser)
   .get('/:user_id', userController.detailUser)
   .post('/register', userController.registerUser)
   .post('/login', userController.loginUser)
   .patch('/:user_id', userController.updateUser)
-  .delete('/:user_id', userController.deleteUser)
+  .delete('/:user_id', userController.deleteUser);
 
 module.exports = router;
