@@ -70,6 +70,7 @@ module.exports = {
 
       const data = await user.create({
         card_number: 1234567890,
+        username: req.body.username,
         fullname: req.body.fullname,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, salt),
