@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
   // eslint-disable-next-line func-names
   loan.associate = function (models) {
     // associations can be defined here
-    loan.hasMany(models.book, {
+    loan.belongsTo(models.book, {
       foreignKey: 'book_id',
       as: 'book',
       sourceKey: 'id',
     });
 
-    loan.hasMany(models.user, {
+    loan.belongsTo(models.user, {
       foreignKey: 'user_id',
       as: 'user',
       sourceKey: 'id',

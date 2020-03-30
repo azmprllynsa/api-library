@@ -67,7 +67,13 @@ module.exports = {
     try {
       const loanId = req.params.loan_id;
 
-      const data = await loan.findOne({ where: { id: loanId } });
+      const data = await loan.findOne({
+        include: [
+          { model: book, as: 'book', attributes: ['title'] },
+          { model: user, as: 'user', attributes: ['fullname'] },
+        ],
+        where: { id: loanId },
+      });
 
       if (data === null) {
         response.status = 404;
