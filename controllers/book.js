@@ -144,7 +144,7 @@ module.exports = {
 
       if (edit === 1) {
         response.status = 200;
-      response.message = 'Book Successfully Edited';
+        response.message = 'Book Successfully Edited';
         response.data = data;
 
         helpers.generic(res, response);
