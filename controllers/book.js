@@ -101,13 +101,13 @@ module.exports = {
     try {
       const { body } = req;
       // eslint-disable-next-line max-len
-      if (await body.title === undefined || body.description === undefined || body.author === undefined) {
+      if (await body.title === null || body.description === null || body.author === null) {
         response.status = 400;
         response.message = 'Input Invalid';
 
         helpers.generic(res, response);
       } else {
-        const data = await books.create({ body });
+        const data = await books.create(body);
 
         response.status = 201;
         response.message = 'Book Has Been Added';
@@ -144,7 +144,7 @@ module.exports = {
 
       if (edit === 1) {
         response.status = 200;
-        response.message = 'Book Successfully Edited';
+      response.message = 'Book Successfully Edited';
         response.data = data;
 
         helpers.generic(res, response);

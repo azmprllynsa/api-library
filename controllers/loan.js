@@ -7,7 +7,7 @@ module.exports = {
     let response = {};
     try {
       const { body } = req;
-      const data = await loan.create({ body });
+      const data = await loan.create(body);
       if (data === undefined) {
         response.status = 400;
         response.message = 'Input Invalid';

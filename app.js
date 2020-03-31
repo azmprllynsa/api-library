@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-console */
 const express = require('express');
 
 const app = express();
@@ -17,6 +18,4 @@ app.use(bodyParser.json());
 
 
 app.use('/api/v1', route);
-app.listen(port, () => {
-  console.log(`App Listen post ${port}`);
-});
+app.listen(port, () => { console.log(`App Listen post ${port}`); });
