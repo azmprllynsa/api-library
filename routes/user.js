@@ -5,7 +5,7 @@ const router = express.Router();
 const userController = require('../controllers/user');
 
 router
-  .get('/admin', userController.getUser)
+  .get('/', userController.getUser)
   .get('/:user_id', userController.detailUser)
   .post('/register', userController.registerUser)
   .post('/login', userController.loginUser)
