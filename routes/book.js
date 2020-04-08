@@ -1,14 +1,23 @@
 /* eslint-disable linebreak-style */
 const express = require('express');
+// const redisHelper = require('../helpers/redis');
 
 const router = express.Router();
 // const multer = require('multer');
+
 // const storage = multer.diskStorage({
-//   destination: function(req, file, cb),
-//   filename: ,
-// })
+//   destination(req, file, cb) {
+//     cb(null, './uploads');
+//   },
+//   filename(req, file, cb) {
+//     cb(null, new Date().toISOString + file.originalname);
+//   },
+// });
 const bookController = require('../controllers/book');
 
+// const upload = multer({
+//   storage,
+// });
 
 router
   .get('/', bookController.getBook)

@@ -35,8 +35,18 @@ module.exports = {
     try {
       const data = await loan.findAll({
         include: [
-          { model: book, as: 'book', attributes: ['title'] },
-          { model: user, as: 'user', attributes: ['fullname'] },
+          {
+            model: book,
+            required: true,
+            as: 'bookLoan',
+            attributes: ['title', 'image', 'author'],
+          },
+          {
+            model: user,
+            required: true,
+            as: 'userLoan',
+            attributes: ['fullname', 'email'],
+          },
         ],
       });
 
@@ -69,8 +79,18 @@ module.exports = {
 
       const data = await loan.findOne({
         include: [
-          { model: book, as: 'book', attributes: ['title'] },
-          { model: user, as: 'user', attributes: ['fullname'] },
+          {
+            model: book,
+            required: true,
+            as: 'bookLoan',
+            attributes: ['title', 'image', 'author'],
+          },
+          {
+            model: user,
+            required: true,
+            as: 'userLoan',
+            attributes: ['fullname', 'email'],
+          },
         ],
         where: { id: loanId },
       });

@@ -10,7 +10,9 @@ module.exports = {
   getUser: (async (req, res) => {
     let response = {};
     try {
-      const data = await user.findAll();
+      const data = await user.findAll({
+        exclude: ['password'],
+      });
 
 
       if (data.length === 0) {
@@ -40,7 +42,10 @@ module.exports = {
     try {
       const userId = req.params.user_id;
 
-      const data = await user.findOne({ where: { id: userId } });
+      const data = await user.findOne({
+        exclude: ['password'],
+        where: { id: userId },
+      });
 
       if (!data) {
         response.status = 404;

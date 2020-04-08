@@ -1,16 +1,9 @@
-/* eslint-disable linebreak-style */
-require('dotenv').config();
 const { Op } = require('sequelize');
-// const redis = require('redis');
-const books = require('../models').book;
 const categories = require('../models').Category;
-// const categories = require('../models').category;
 const helpers = require('../helpers/response');
 
-// const client = redis.createClient(process.env.PORT_REDIS);
-
 module.exports = {
-  getBook: (async (req, res) => {
+  getCategories: (async (req, res) => {
     let pagination = {};
     try {
       const page = parseInt(req.query.page, 10) || 1;
@@ -28,19 +21,10 @@ module.exports = {
             { description: { [Op.substring]: search } },
           ],
         };
+
         param.where = where;
         searchParam = { where };
       }
-      param.join = {
-        include: [
-          {
-            model: categories,
-            required: true,
-            as: 'categories',
-            attributes: ['name'],
-          },
-        ],
-      };
       let sortType = req.query.sort_type || '';
       sortType = sortType.toUpperCase() || 'ASC';
       if (sort !== undefined) {
@@ -50,11 +34,10 @@ module.exports = {
       }
       param.offset = offset;
       param.limit = limit;
-      // param.join = join;
-      // console.log(param.join);
 
-      const data = await books.findAll(param);
-      const count = await books.count(searchParam);
+
+      const data = await categories.findAll(param);
+      const count = await categories.count(searchParam);
 
 
       pagination = {
@@ -65,7 +48,6 @@ module.exports = {
         per_page: data.length,
         path,
       };
-
       if (data.length !== 0) {
         pagination.status = 200;
         pagination.message = 'success';
@@ -83,50 +65,46 @@ module.exports = {
     }
   }),
 
-  detailBook: (async (req, res) => {
+  detailCategories: (async (req, res) => {
     let response = {};
     try {
-      const bookId = req.params.book_id;
-      const data = await books.findOne({
-        where: {
-          id: bookId,
-        },
-      });
-      if (data === null) {
+      const categoryId = req.params.category_id;
+
+      const data = await categories.findOne({ where: { id: categoryId } });
+
+      if (!data) {
         response.status = 404;
         response.message = 'Data Not Found';
 
         helpers.generic(res, response);
+      } else {
+        response.status = 200;
+        response.message = 'OK';
+        response.data = data;
+
+        helpers.generic(res, response);
       }
-
-      response.status = 200;
-      response.message = 'OK';
-      response.data = data;
-
-      helpers.generic(res, response);
     } catch (err) {
       response = {};
       response.status = 500;
       response.message = 'Internal Server Error';
+      response.err = err;
 
       helpers.generic(res, response);
     }
   }),
 
-  insertBook: (async (req, res) => {
+  createCategories: (async (req, res) => {
     let response = {};
-
     try {
       const { body } = req;
-      // eslint-disable-next-line max-len
-      if (await body.title === null || body.description === null || body.author === null) {
+      const data = await categories.create(body);
+      if (data === undefined) {
         response.status = 400;
         response.message = 'Input Invalid';
 
         helpers.generic(res, response);
       } else {
-        const data = await books.create(body);
-
         response.status = 201;
         response.message = 'Book Has Been Added';
         response.data = data;
@@ -137,26 +115,27 @@ module.exports = {
       response = {};
       response.status = 500;
       response.message = 'Internal Server Error';
+      response.err = err;
 
       helpers.generic(res, response);
     }
   }),
 
-  editBook: (async (req, res) => {
+  updateCategories: (async (req, res) => {
     let response = {};
     try {
-      const bookId = req.params.book_id;
+      const categoryId = req.params.category_id;
       const input = req.body;
       // console.log(req.body);
 
-      const [edit] = await books.update(input, {
+      const [edit] = await categories.update(input, {
         where: {
-          id: bookId,
+          id: categoryId,
         },
       });
-      const data = await books.findOne({
+      const data = await categories.findOne({
         where: {
-          id: bookId,
+          id: categoryId,
         },
       });
 
@@ -177,23 +156,26 @@ module.exports = {
       response = {};
       response.status = 500;
       response.message = 'Internal Server Error';
+      response.err = err;
 
       helpers.generic(res, response);
     }
   }),
 
-  deleteBook: (async (req, res) => {
+  deleteCategories: (async (req, res) => {
     let response = {};
     try {
-      const bookId = req.params.book_id;
-      const data = await books.destroy({
+      const categoryId = req.params.category_id;
+
+      const data = await categories.destroy({
         where: {
-          id: bookId,
+          id: categoryId,
         },
       });
+
       if (data) {
         response.status = 200;
-        response.message = `Book ID ${bookId} Successfully Deleted`;
+        response.message = 'User Successfully Deleted';
 
         helpers.generic(res, response);
       } else {
@@ -206,6 +188,7 @@ module.exports = {
       response = {};
       response.status = 500;
       response.message = 'Internal Server Error';
+      response.err = err;
 
       helpers.generic(res, response);
     }
