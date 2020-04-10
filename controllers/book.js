@@ -14,7 +14,7 @@ module.exports = {
     let pagination = {};
     try {
       const page = parseInt(req.query.page, 10) || 1;
-      const limit = parseInt(req.query.limit, 10) || 5;
+      const limit = parseInt(req.query.limit, 10) || 12;
       const path = `${req.get('host') + req.baseUrl}?page`;
       const { search } = req.query;
       const offset = (page * limit) - limit;
