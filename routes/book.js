@@ -3,6 +3,7 @@ const express = require('express');
 // const redisHelper = require('../helpers/redis');
 
 const router = express.Router();
+const { verify } = require('../helpers/auth');
 // const multer = require('multer');
 
 // const storage = multer.diskStorage({
@@ -14,6 +15,7 @@ const router = express.Router();
 //   },
 // });
 const bookController = require('../controllers/book');
+const { upload } = require('../helpers/upload');
 
 // const upload = multer({
 //   storage,
@@ -22,8 +24,8 @@ const bookController = require('../controllers/book');
 router
   .get('/', bookController.getBook)
   .get('/:book_id', bookController.detailBook)
-  .post('/admin', bookController.insertBook)
-  .post('/admin/:book_id', bookController.editBook)
-  .delete('/admin/:book_id', bookController.deleteBook);
+  .post('/admin', verify, upload.single('book_image'), bookController.insertBook)
+  .patch('/admin/:book_id', verify, upload.single('book_image'), bookController.editBook)
+  .delete('/admin/:book_id', verify, bookController.deleteBook);
 
 module.exports = router;

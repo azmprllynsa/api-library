@@ -14,7 +14,7 @@ module.exports = {
     let pagination = {};
     try {
       const page = parseInt(req.query.page, 10) || 1;
-      const limit = parseInt(req.query.limit, 10) || 12;
+      const limit = parseInt(req.query.limit, 10) || 20;
       const path = `${req.get('host') + req.baseUrl}?page`;
       const { search } = req.query;
       const offset = (page * limit) - limit;
@@ -117,15 +117,17 @@ module.exports = {
     let response = {};
 
     try {
-      const { body } = req;
+      // eslint-disable-next-line prefer-const
+      let input = req.body;
+      input.image = `http://${req.get('host')}/${req.file.path}`;
       // eslint-disable-next-line max-len
-      if (await body.title === null || body.description === null || body.author === null) {
+      if (await input.title === null || input.description === null || input.author === null) {
         response.status = 400;
         response.message = 'Input Invalid';
 
         helpers.generic(res, response);
       } else {
-        const data = await books.create(body);
+        const data = await books.create(input);
 
         response.status = 201;
         response.message = 'Book Has Been Added';
@@ -146,7 +148,10 @@ module.exports = {
     let response = {};
     try {
       const bookId = req.params.book_id;
-      const input = req.body;
+      // eslint-disable-next-line prefer-const
+      let input = req.body;
+      input.image = `http://${req.get('host')}/${req.file.path}`;
+      // console.log(req.file);
       // console.log(req.body);
 
       const [edit] = await books.update(input, {
