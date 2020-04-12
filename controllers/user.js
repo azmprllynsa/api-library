@@ -1,7 +1,8 @@
 /* eslint-disable linebreak-style */
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const models = require('../models');
-
 
 const { user } = models;
 const helpers = require('../helpers/response');
@@ -125,6 +126,10 @@ module.exports = {
 
           helpers.generic(res, response);
         } else {
+          const token = jwt.sign({ id: data.id, email }, process.env.SECRET_KEY);
+          console.log(token);
+          data.dataValues.token = token;
+          console.log(data);
           response.status = 200;
           response.message = `${email} Login Successfully!`;
           response.data = data;
