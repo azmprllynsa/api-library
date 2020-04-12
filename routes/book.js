@@ -20,7 +20,7 @@ const { upload } = require('../helpers/upload');
 // const upload = multer({
 //   storage,
 // });
-
+// upload.single('book_image'),
 router
   .get('/', bookController.getBook)
   .get('/:book_id', bookController.detailBook)

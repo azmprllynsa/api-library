@@ -14,8 +14,8 @@ module.exports = {
     let pagination = {};
     try {
       const page = parseInt(req.query.page, 10) || 1;
-      const limit = parseInt(req.query.limit, 10) || 20;
-      const path = `${req.get('host') + req.baseUrl}?page`;
+      const limit = parseInt(req.query.limit, 10) || 3;
+      const path = `http://${req.get('host') + req.baseUrl}?page`;
       const { search } = req.query;
       const offset = (page * limit) - limit;
       const param = {};
@@ -119,7 +119,7 @@ module.exports = {
     try {
       // eslint-disable-next-line prefer-const
       let input = req.body;
-      input.image = `http://${req.get('host')}/${req.file.path}`;
+      input.image = `http://${req.get('host')}/${req.file.path.replace(/\\/g, '/')}`;
       // eslint-disable-next-line max-len
       if (await input.title === null || input.description === null || input.author === null) {
         response.status = 400;
@@ -150,8 +150,8 @@ module.exports = {
       const bookId = req.params.book_id;
       // eslint-disable-next-line prefer-const
       let input = req.body;
-      input.image = `http://${req.get('host')}/${req.file.path}`;
-      // console.log(req.file);
+      input.image = `http://${req.get('host')}/${req.file.path.replace(/\\/g, '/')}`;
+      console.log(req.file);
       // console.log(req.body);
 
       const [edit] = await books.update(input, {

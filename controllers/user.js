@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const models = require('../models');
 
 const { user } = models;
+const mail = require('../helpers/mail');
 const helpers = require('../helpers/response');
 
 module.exports = {
@@ -86,7 +87,7 @@ module.exports = {
         address: ' ',
         photo: 'photo.jpg',
         role_id: 'user',
-        status: 1,
+        status: 0,
       });
 
       if (data === null) {
@@ -94,6 +95,14 @@ module.exports = {
         response.message = 'Data Not Found';
         helpers.generic(res, response);
       } else {
+        const encrypt = jwt.sign({ id: data.id, email: data.email }, process.env.SECRET_KEY);
+        const dataEmail = {
+          email: data.email,
+          encrypt,
+        };
+        console.log('try to send email');
+        mail.send(dataEmail);
+
         response.status = 201;
         response.message = 'Account has been created!';
         response.data = data;
@@ -120,9 +129,21 @@ module.exports = {
       });
       if (data) {
         const authorized = bcrypt.compareSync(req.body.password, data.password);
+        if (data.email !== email) {
+          response.status = 404;
+          response.message = 'Email Incorrect!';
+
+          helpers.generic(res, response);
+        }
         if (!authorized) {
           response.status = 404;
-          response.message = 'Email / Password Incorrect!';
+          response.message = 'Password Incorrect!';
+
+          helpers.generic(res, response);
+        }
+        if (data.status !== 1) {
+          response.status = 400;
+          response.message = 'Your Account Need Email Confirmation!';
 
           helpers.generic(res, response);
         } else {
@@ -210,6 +231,52 @@ module.exports = {
       } else {
         response.status = 404;
         response.message = 'Data Not Found';
+
+        helpers.generic(res, response);
+      }
+    } catch (err) {
+      response = {};
+      response.status = 500;
+      response.message = 'Internal Server Error';
+      response.err = err;
+
+      helpers.generic(res, response);
+    }
+  }),
+
+  userConfirm: (async (req, res) => {
+    let response = {};
+    try {
+      // const salt = bcrypt.genSaltSync(10);
+      console.log(req.query.encrypt);
+      const token = req.query.encrypt;
+      const userId = jwt.verify(token, process.env.SECRET_KEY).id;
+      console.log('here');
+      const data = await user.findOne({
+        where: {
+          id: userId,
+        },
+      });
+
+      const [edit] = await user.update({
+        status: 1,
+      },
+      {
+        where: {
+          id: userId,
+        },
+      });
+
+      if (edit === 0) {
+        response.status = 404;
+        response.message = 'Data Not Found';
+
+        helpers.generic(res, response);
+      }
+      if (edit === 1) {
+        response.status = 200;
+        response.message = 'Email Has been confirm';
+        response.data = data;
 
         helpers.generic(res, response);
       }
