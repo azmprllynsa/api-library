@@ -58,7 +58,6 @@ $ npm start
 
 
 ## API Endpoint
-```
 ### Book Endpoint
 | No  | HTTP Method | URI                                 | Operation                                  |
 | --- | ----------- | ----------------------------------- | ------------------------------------------ |
