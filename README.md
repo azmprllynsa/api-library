@@ -1,11 +1,11 @@
 <h2 align="center">Library API</h2>
 
-[![Release Version](https://img.shields.io/badge/release-v.1.0)](https://github.com/azmprllynsa/api-library/releases/tag/1.0) [![Node JS](https://img.shields.io/badge/Dependencies-Express%20JS-green)](https://nodejs.org/en/)
+[![Node JS](https://img.shields.io/badge/Dependencies-Express%20JS-green)](https://nodejs.org/en/)
 ![GitHub repo size](https://img.shields.io/github/repo-size/azmprllynsa/api-library)
 ![GitHub contributors](https://img.shields.io/github/contributors/azmprllynsa/api-library)
 ![GitHub stars](https://img.shields.io/github/stars/azmprllynsa/api-library?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/azmprllynsa/api-library?style=social)
-)
+
 <p align="center" >
   <a href="https://nodejs.org/">
     <img src="https://cdn-images-1.medium.com/max/871/1*d2zLEjERsrs1Rzk_95QU9A.png">
