@@ -119,7 +119,7 @@ Fork the Project
 [Instagram] (https://instagram.com/azmprllynsa)
 [Email] (azmi.naisa@gmail.com) -->
 ## Related Project
-[Library-Frontend] (https://github.com/azmprllynsa/Library-Vuejs)
+[Frontend] (https://github.com/azmprllynsa/Library-Vuejs)
 
 
 
