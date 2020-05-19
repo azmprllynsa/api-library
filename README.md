@@ -118,7 +118,7 @@ Fork the Project
 ## Contact
 [Instagram] (https://instagram.com/azmprllynsa)
 [Email] (azmi.naisa@gmail.com) -->
-## Postman Collection
+## Related Project
 [Click Here](https://www.getpostman.com/collections/fc001183ae45c207af2a)
 
 
