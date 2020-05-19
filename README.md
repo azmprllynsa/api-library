@@ -1,4 +1,4 @@
-<h2 align="center">Library API</h2>
+<h1 align="center">Library API</h1>
 
 [![Node JS](https://img.shields.io/badge/Dependencies-Express%20JS-green)](https://nodejs.org/en/)
 ![GitHub repo size](https://img.shields.io/github/repo-size/azmprllynsa/api-library)
