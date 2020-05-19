@@ -27,7 +27,7 @@
 
 ## Prerequiste
 - Node.js - Download and Install [Node.js](https://nodejs.org/en/).
-- MySQL - Download and Install [MySQL](https://www.mysql.com/downloads/) - Make sure it's running on the default port.
+- MySQL - Download and Install [MySQL](https://www.mysql.com/downloads/)
 - Redis - Download and Install [Redis](https://redis.io/)
 
 
@@ -111,15 +111,13 @@ Fork the Project
 3. Push to the Branch ```git push origin [feature]```
 4. Open a Pull Request
 
-
-<!-- ## Related Project
-[Library-Frontend] (https://github.com/azmprllynsa/Library-Vuejs)
-
-## Contact
-[Instagram] (https://instagram.com/azmprllynsa)
-[Email] (azmi.naisa@gmail.com) -->
 ## Related Project
 [Library-Frontend](https://github.com/azmprllynsa/Library-Vuejs)
+
+
+## Contact
+[Instagram](https://instagram.com/azmprllynsa)
+[Email](azmi.naisa@gmail.com)
 
 
 
