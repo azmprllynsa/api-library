@@ -1,0 +1,44 @@
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+        h2 {
+            text-align: center;
+            background: #03ac0e;
+            width: 500px;
+            height: 60px;
+            line-height: 60px;
+            margin: 30px auto;
+            color: #fff;
+        }
+        .link {
+            display: inline-block;
+            width: 250px;
+            height: 40px;
+            line-height: 40px;
+            text-decoration: none;
+            color: #ffffff !important;
+            font-weight: bold;
+            text-align: center;
+            background: #03ac0e;
+            margin-left: 40%;
+        }
+        .link-1{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Verifikasi alamat email kamu</h2>
+    <p>Terima kasih karena telah melakukan registrasi di tokosidia. Username kamu atas nama ${data.fullname}.
+        verifikasi email anda dengan mengklik link dibawah ini,agar anda dapat menikmati berbelanja barang-barang berkualitas di website kami.
+        Klik tombol dibawah atau <a href="${process.env.ACTIVATION + token}" class="link-1">link ini</a> untuk mengaktifkan akun</p>
+        <a href="${process.env.ACTIVATION + token}" class="link">Verifikasi Alamat Email</a>
+</body>
+</html>`
