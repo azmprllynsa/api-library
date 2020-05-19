@@ -53,8 +53,8 @@ module.exports = {
       if (data === null) {
         response.status = 404;
         response.message = 'Data Not Found';
-        process.env
-          .helpers.generic(res, response);
+
+        helpers.generic(res, response);
       }
 
       response.status = 200;

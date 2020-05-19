@@ -12,7 +12,7 @@ module.exports = {
     });
     // eslint-disable-next-line prefer-const
     let response = [];
-    const link = `Click <a href="${process.env.URL_EMAIL_CONFIRM}?encrypt=${data.encrypt}"></a>`;
+    const link = `${process.env.URL_EMAIL_CONFIRM}?encrypt=${data.encrypt}`;
     const mailOptions = {
       from: process.env.EMAIL,
       to: data.email,
@@ -22,9 +22,9 @@ module.exports = {
 
     transporter.sendMail(mailOptions, (err) => {
       if (err) {
-        console.log(err);
         response.message = 'email failed';
       } else {
+        response.status = 200;
         response.error = false;
         response.message = 'Successfully send email nodemailer';
       }

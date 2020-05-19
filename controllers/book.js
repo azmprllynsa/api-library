@@ -3,7 +3,7 @@ require('dotenv').config();
 const { Op } = require('sequelize');
 // const redis = require('redis');
 const books = require('../models').book;
-const categories = require('../models').Category;
+const categories = require('../models').category;
 // const categories = require('../models').category;
 const helpers = require('../helpers/response');
 
@@ -14,7 +14,7 @@ module.exports = {
     let pagination = {};
     try {
       const page = parseInt(req.query.page, 10) || 1;
-      const limit = parseInt(req.query.limit, 10) || 3;
+      const limit = parseInt(req.query.limit, 10) || 8;
       const path = `http://${req.get('host') + req.baseUrl}?page`;
       const { search } = req.query;
       const offset = (page * limit) - limit;
@@ -44,8 +44,6 @@ module.exports = {
       let sortType = req.query.sort_type || '';
       sortType = sortType.toUpperCase() || 'ASC';
       if (sort !== undefined) {
-        // eslint-disabl-line no-multi-assign
-        // eslint-disable-next-line no-multi-assign
         param.order = [[sort, sortType]];
       }
       param.offset = offset;
@@ -182,6 +180,7 @@ module.exports = {
       response = {};
       response.status = 500;
       response.message = 'Internal Server Error';
+      response.err = err;
 
       helpers.generic(res, response);
     }

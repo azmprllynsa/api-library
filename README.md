@@ -1,4 +1,4 @@
-# api-library
+<h2 align="center">Library API</h2>
 
 Assignment from Arkademy Bootcamp to build library API.
 

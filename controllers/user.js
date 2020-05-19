@@ -86,7 +86,7 @@ module.exports = {
         job: ' ',
         address: ' ',
         photo: 'photo.jpg',
-        role_id: 'user',
+        role_id: 0,
         status: 0,
       });
 
@@ -100,7 +100,6 @@ module.exports = {
           email: data.email,
           encrypt,
         };
-        console.log('try to send email');
         mail.send(dataEmail);
 
         response.status = 201;
@@ -127,14 +126,10 @@ module.exports = {
           email,
         },
       });
+      // console.log(data);
       if (data) {
         const authorized = bcrypt.compareSync(req.body.password, data.password);
-        if (data.email !== email) {
-          response.status = 404;
-          response.message = 'Email Incorrect!';
-
-          helpers.generic(res, response);
-        }
+        console.log(email);
         if (!authorized) {
           response.status = 404;
           response.message = 'Password Incorrect!';
@@ -148,9 +143,7 @@ module.exports = {
           helpers.generic(res, response);
         } else {
           const token = jwt.sign({ id: data.id, email }, process.env.SECRET_KEY);
-          console.log(token);
           data.dataValues.token = token;
-          console.log(data);
           response.status = 200;
           response.message = `${email} Login Successfully!`;
           response.data = data;
@@ -247,11 +240,8 @@ module.exports = {
   userConfirm: (async (req, res) => {
     let response = {};
     try {
-      // const salt = bcrypt.genSaltSync(10);
-      console.log(req.query.encrypt);
       const token = req.query.encrypt;
       const userId = jwt.verify(token, process.env.SECRET_KEY).id;
-      console.log('here');
       const data = await user.findOne({
         where: {
           id: userId,
