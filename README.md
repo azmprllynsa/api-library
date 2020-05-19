@@ -22,7 +22,7 @@
 * [API Endpoint](#API-Endpoint)
 * [About Project](#About-Project)
 * [Related Project](#Related-Project)
-* [Contributing] (#Contributing)
+* [Contributing](#Contributing)
 * [Contact](#Contact)
 
 ## Prerequiste
@@ -116,8 +116,8 @@ Fork the Project
 
 
 ## Contact
-[Instagram](https://instagram.com/azmprllynsa)
-[Email](azmi.naisa@gmail.com)
+- [Instagram](https://instagram.com/azmprllynsa)
+- [Email](azmi.naisa@gmail.com)
 
 
 
