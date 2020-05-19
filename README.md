@@ -120,8 +120,9 @@ You can contact me via:
 - [Instagram](https://instagram.com/azmprllynsa)
 - [Email](azmi.naisa@gmail.com)
 
+
 ---
-Copyright © 2020 [Azmi Prilly Naisa](https://github.com/azmprillynsa/)
+Copyright © 2020 [Azmi Prilly Naisa](https://github.com/azmprllynsa/)
 
 
 
