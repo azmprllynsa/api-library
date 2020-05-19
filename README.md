@@ -1,6 +1,11 @@
 <h2 align="center">Library API</h2>
 
-Assignment from Arkademy Bootcamp to build library API.
+<p align="center">
+<img src="./assets/bookshelf.jpg">
+  <a href="https://nodejs.org/">
+    <img src="https://cdn-images-1.medium.com/max/871/1*d2zLEjERsrs1Rzk_95QU9A.png">
+  </a>
+</p>
 
 
 ## Requirements
