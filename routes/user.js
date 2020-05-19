@@ -7,7 +7,7 @@ const userController = require('../controllers/user');
 router
   .get('/', userController.getUser)
   .get('/email-confirm', userController.userConfirm)
-  .get('/:user_id', userController.detailUser)
+  .get('/admin/:user_id', userController.detailUser)
   .post('/register', userController.registerUser)
   .post('/login', userController.loginUser)
   .patch('/:user_id', userController.updateUser)
