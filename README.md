@@ -112,7 +112,7 @@ Fork the Project
 4. Open a Pull Request
 
 ## Related Project
-[Library-Frontend](https://github.com/azmprllynsa/Library-Vuejs)
+[`Library Frontend`](https://github.com/azmprllynsa/Library-Vuejs)
 
 
 ## Contact
