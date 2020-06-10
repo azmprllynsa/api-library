@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "ubuntu",
-    "password": "Pa$$w0rD",
-    "database": "library-api",
+    "username": "root",
+    "password": "",
+    "database": "library_api",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
