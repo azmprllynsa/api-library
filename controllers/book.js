@@ -78,6 +78,7 @@ module.exports = {
     } catch (err) {
       pagination = {};
       helpers.pagination(res, req.query, pagination);
+      console.log(err);
     }
   }),
 

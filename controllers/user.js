@@ -156,7 +156,7 @@ module.exports = {
       response.status = 500;
       response.message = 'Internal Server Error';
       response.err = err;
-      console.log(err)
+      console.log(err);
 
       helpers.generic(res, response);
     }
